@@ -16,6 +16,13 @@
 
 <br/>
 
+[![Visite](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Flapo-py.github.io%2FImageToPDF-360%2F&count_bg=%2300D4FF&title_bg=%23555555&title=👁️+Visite&edge_flat=true)](https://lapo-py.github.io/ImageToPDF-360/)
+[![Repo Views](https://visitor-badge.laobi.icu/badge?page_id=Lapo-PY.ImageToPDF-360&left_color=555555&right_color=a855f7&left_text=👁️+Repo+Views)](https://github.com/Lapo-PY/ImageToPDF-360)
+[![GitHub Stars](https://img.shields.io/github/stars/Lapo-PY/ImageToPDF-360?style=flat-square&logo=github&label=⭐+Stars&color=fbbf24)](https://github.com/Lapo-PY/ImageToPDF-360/stargazers)
+[![GitHub Forks](https://img.shields.io/github/forks/Lapo-PY/ImageToPDF-360?style=flat-square&logo=github&label=🍴+Forks&color=22c55e)](https://github.com/Lapo-PY/ImageToPDF-360/network/members)
+
+<br/>
+
 ![Preview Dark](https://via.placeholder.com/900x500/050510/00d4ff?text=ImageToPDF+360+%E2%80%94+Dark+Mode)
 
 </div>
@@ -39,13 +46,13 @@
 
 ---
 
-## 🚀 Demo
+## 🚀 Download
 
 > Apri `index.html` direttamente nel browser — nessun server necessario.
 
 ```bash
-git clone https://github.com/tuousername/imagetopdf360.git
-cd imagetopdf360
+git clone https://github.com/Lapo-PY/ImageToPDF-360.git
+cd ImageToPDF-360
 # Apri index.html nel browser
 open index.html          # macOS
 start index.html         # Windows
