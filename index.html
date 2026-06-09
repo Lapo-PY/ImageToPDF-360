@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ImageToPDF 360 — Liquid Glass</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+
+    <!-- Animated Liquid Background -->
+    <div class="liquid-bg">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+        <div class="blob blob-4"></div>
+        <div class="blob blob-5"></div>
+        <div class="mesh-grid"></div>
+    </div>
+
+    <!-- Floating Orbs -->
+    <div class="floating-orbs" id="floatingOrbs"></div>
+
+    <!-- Header -->
+    <header class="glass-header">
+        <div class="header-inner">
+            <div class="logo">
+                <div class="logo-mark">
+                    <div class="logo-glass">
+                        <svg viewBox="0 0 36 36" fill="none">
+                            <rect x="3" y="3" width="30" height="30" rx="8" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.3)" stroke-width="1.2"/>
+                            <path d="M12 22L16 17L20 22" stroke="rgba(255,255,255,0.9)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M16 17V27" stroke="rgba(255,255,255,0.9)" stroke-width="1.8" stroke-linecap="round"/>
+                            <path d="M21 11H27V17" stroke="rgba(255,255,255,0.5)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M27 11L21 17" stroke="rgba(255,255,255,0.5)" stroke-width="1.3" stroke-linecap="round"/>
+                            <circle cx="11" cy="12" r="2.5" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="1.2"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="logo-text">
+                    <h1>ImageToPDF <span class="accent-text">360</span></h1>
+                </div>
+            </div>
+            <p class="header-tagline">Converti immagini in PDF — istantaneo e gratuito</p>
+        </div>
+    </header>
+
+    <!-- Main -->
+    <main class="main">
+
+        <!-- Upload -->
+        <section class="upload-section">
+            <div class="glass-upload" id="uploadArea">
+                <div class="glass-border-glow"></div>
+                <div class="upload-inner">
+                    <div class="upload-icon-container">
+                        <div class="upload-pulse"></div>
+                        <svg class="upload-icon" viewBox="0 0 64 64" fill="none">
+                            <rect x="6" y="14" width="52" height="38" rx="7" stroke="rgba(255,255,255,0.35)" stroke-width="1.5" stroke-dasharray="4 3"/>
+                            <path d="M32 44V24" stroke="rgba(255,255,255,0.7)" stroke-width="2.2" stroke-linecap="round"/>
+                            <path d="M23 32L32 22L41 32" stroke="rgba(255,255,255,0.7)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <h2 class="upload-title">Trascina le immagini qui</h2>
+                    <p class="upload-sub">oppure <span class="upload-link">sfoglia i file</span></p>
+                    <div class="format-pills">
+                        <span class="pill">PNG</span>
+                        <span class="pill">JPG</span>
+                        <span class="pill">JPEG</span>
+                        <span class="pill">WEBP</span>
+                    </div>
+                </div>
+                <input type="file" id="fileInput" multiple accept="image/png,image/jpeg,image/jpg,image/webp" hidden>
+            </div>
+        </section>
+
+        <!-- Settings -->
+        <section class="glass-card settings-card">
+            <div class="glass-border-glow"></div>
+            <h3 class="card-title"><span class="card-emoji">⚙️</span> Impostazioni</h3>
+            <div class="settings-grid">
+                <div class="field">
+                    <label>Formato pagina</label>
+                    <div class="glass-select">
+                        <select id="pageSize">
+                            <option value="a4" selected>A4</option>
+                            <option value="a3">A3</option>
+                            <option value="letter">Letter</option>
+                            <option value="legal">Legal</option>
+                            <option value="fit">Adatta all'immagine</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="field">
+                    <label>Orientamento</label>
+                    <div class="glass-select">
+                        <select id="orientation">
+                            <option value="portrait" selected>Verticale</option>
+                            <option value="landscape">Orizzontale</option>
+                            <option value="auto">Automatico</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="field">
+                    <label>Margini</label>
+                    <div class="range-row">
+                        <input type="range" id="margin" min="0" max="30" value="10">
+                        <span class="range-val" id="marginVal">10 mm</span>
+                    </div>
+                </div>
+                <div class="field">
+                    <label>Qualità</label>
+                    <div class="range-row">
+                        <input type="range" id="quality" min="0.1" max="1" step="0.1" value="0.9">
+                        <span class="range-val" id="qualityVal">90%</span>
+                    </div>
+                </div>
+                <div class="field field-full">
+                    <label>Nome file</label>
+                    <input type="text" class="glass-input" id="pdfName" placeholder="es: il-mio-documento" value="ImageToPDF360_output">
+                </div>
+                <div class="field field-toggle">
+                    <label class="toggle-wrap">
+                        <input type="checkbox" id="fitToPage" checked>
+                        <div class="toggle-track"><div class="toggle-thumb"></div></div>
+                        <span>Adatta alla pagina</span>
+                    </label>
+                </div>
+            </div>
+        </section>
+
+        <!-- Preview -->
+        <section class="glass-card preview-card" id="previewSection">
+            <div class="glass-border-glow"></div>
+            <div class="card-header-row">
+                <h3 class="card-title">
+                    <span class="card-emoji">🖼️</span> Anteprima
+                    <span class="count-badge" id="imageCount">0</span>
+                </h3>
+                <div class="card-actions">
+                    <button class="glass-btn-sm" id="sortAZ">A → Z</button>
+                    <button class="glass-btn-sm glass-btn-danger" id="clearAll">Svuota</button>
+                </div>
+            </div>
+            <p class="hint-text">Trascina le schede per riordinare le pagine</p>
+            <div class="preview-grid" id="previewGrid"></div>
+        </section>
+
+        <!-- Convert -->
+        <section class="convert-section" id="convertSection">
+            <button class="glass-btn-convert" id="convertBtn" disabled>
+                <span class="btn-inner">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                        <polyline points="7 10 12 15 17 10"/>
+                        <line x1="12" y1="15" x2="12" y2="3"/>
+                    </svg>
+                    Genera PDF
+                </span>
+                <div class="btn-liquid-shine"></div>
+            </button>
+            <div class="progress-area" id="progressArea">
+                <div class="glass-progress">
+                    <div class="glass-progress-fill" id="progressFill"></div>
+                </div>
+                <p class="progress-label" id="progressLabel">Preparazione…</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="glass-footer">
+        <p>Tutto avviene nel tuo browser — nessun upload su server</p>
+        <p class="footer-brand">ImageToPDF <span>360</span></p>
+    </footer>
+
+    <!-- Toasts -->
+    <div class="toast-stack" id="toastStack"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
